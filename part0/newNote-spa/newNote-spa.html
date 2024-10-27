@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Making a new note in single page app</title>
+    <link href="css/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <b>New note in Single Page app</b>
+      <pre class="mermaid">
+      sequenceDiagram
+        participant browser 
+        participant server 
+
+        browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+        activate server 
+        server-->>browser: 201 {"content": "play alegernon by yorushika","date": "2024-10-27T02:51:00.780Z"}       
+        deactivate server 
+
+        browser->>server: POST form id="notes_form"
+        activate server 
+        server-->>browser: Javascript file "document.getElementById('notes_form')"
+        deactivate server
+
+        Note right of browser: the form calls the javascript file 
+
+        server->>server: Javascript file "document.getElementById('notes_form')"
+        activate server 
+        server-->>server: Javascript file "e.preventDefault()"
+        deactivate server 
+
+        server->>browser: Javascript file "notes.push(note)"
+        activate server 
+        browser-->>server: HTML file with new note
+        deactivate server 
+
+      </pre>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+    </script>
+  </body>
+</html>
