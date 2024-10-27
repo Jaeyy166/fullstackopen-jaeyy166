@@ -8,12 +8,18 @@
   </head>
   <body>
     <b>Single Page App Diagram</b>
-      <pre>
+      <pre class="mermaid">
       sequenceDiagram
         participant browser 
         participant server 
 
+        browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+        activate server 
+        server-->>browser: 201{ "content": "bruhhhh", "date": "2024-10-27T02:18:57.943Z" }
+        deactivate server
 
+        Note right of browser: The JSON file does not have a content header so the browser does not know how parse the data, therefore not having to relaod the page 
+        
 
 
 
