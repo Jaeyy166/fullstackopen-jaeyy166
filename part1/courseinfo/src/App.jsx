@@ -8,42 +8,50 @@ const Header = () => {
   )
 }
 
-const Part = () => {
-  return (
-  )
-}
-
 // content component 
-const Content = () => {
+const Part = (props) => {
   return (
-    <div>
-      <Part .../>
-      <Part .../>
-      <Part .../>
-    </div>
+    <p>
+      {props.part} {props.exercise}
+    </p>
   )
 }
 
-// total component
-const Total = () => {
-  
-  return (
-    <div>
-      <p><b>Number of exercises = {totalExercises}</b></p>
-    </div>
-  )
-}
-
-const App = () => {
+const Content = (props) => {
   const part1 = "Fundamentals of React"
   const part2 = "Using props to pass data"
   const part3 = "State of a component"
   const exercise1 = 10
   const exercise2 = 7
   const exercise3 = 14
+
+  return (
+    <div>
+      <Part part={part1} exercise={exercise1}/>
+      <Part part={part2} exercise={exercise2}/>
+      <Part part={part3} exercise={exercise3}/>
+    </div>
+  )
+}
+
+// total component
+const Total = (props) => {
+  const exercise1 = 10
+  const exercise2 = 7
+  const exercise3 = 14
   const totalExercises = (exercise1 + exercise2 + exercise3)
 
+  return (
+    <div>
+      <p>
+        Number of exercises = {totalExercises.toString()}
+      </p>
+    </div>
+  )
+}
 
+// app component 
+const App = () => {
   return (
     <>
       <Header  />
